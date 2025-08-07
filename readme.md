@@ -1,4 +1,4 @@
-# Azure Virtual Machin Scale Set (VMSS) Infrastructure using Terraform
+# Deploy "Azure Virtual Machine Scale Set" (VMSS) using Terraform
 
 ## Overview
 This project outlines how to build a scalable web application infrastructure in Azure using Terraform. It includes setting up a Virtual Machine Scale Set (VMSS) behind a load balancer with appropriate security and auto-scaling configurations.
@@ -10,9 +10,11 @@ This project outlines how to build a scalable web application infrastructure in 
    - East US
    - Central India
    - South India
-Also create the validation rule that restrict other regions
+Create the validation rule that restrict other regions
 
-### Create Networking - Subnets (Application and Management) , Configure NSG rule http, https and SSH
+==> To achive the requirement we have developed code in rg.tf and variable.tf check variable "location"
+
+### Create Networking - Subnets (Application and Management) , Configure NSG rules http, https and SSH
 * Create a VNet with two subnets:
    - Application subnet (for vmss)
    - Management subnet (for future use)
@@ -20,6 +22,8 @@ Also create the validation rule that restrict other regions
    - Only allows traffic from the load balancer to VMSS
    - Uses dynamic blocks for rule configuration
    - Denies all other inbound traffic
+
+==> To achive the requirement we have developed code in vnet.tf
 
 ### Compute - Create VM and Configure Scaling
 * Set up a VMSS with:
@@ -34,11 +38,15 @@ Also create the validation rule that restrict other regions
    - Minimum instances: 2
    - Maximum instances: 5
 
+==> To achive the requirement we have developed code in vmss.tf. This is a main file.
+
 ### Create Load Balancer
 * Create an Azure Load Balancer:
    - Public IP
    - Backend pool connected to VMSS
    - Health probe on port 80
+
+==> To achive the requirement we have developed code in loadbalancer.tf
 
 ## Technical Requirements
 
